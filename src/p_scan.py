@@ -9,7 +9,7 @@ class PScan:
         self.remote_host = ""
 
     def scan_port(self, port):
-        print(f"Scanning Port {port}")
+        # print(f"Scanning Port {port}")
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         conn_status = sock.connect_ex((self.remote_host, port))
         if conn_status == 0:
@@ -20,7 +20,9 @@ class PScan:
     def threadpool_executer(self, ports):
         number_of_workers = os.cpu_count()
         with ThreadPool(number_of_workers) as pool:
-            pool.map(self.scan_port, ports)
+            for loop_index, _ in enumerate(pool.imap(self.scan_port, ports), 1):
+                advancment = loop_index / len(ports) * 100
+                print("%.1f" % advancment)
 
     def run(self):
         self.remote_host = input("Target: ")
