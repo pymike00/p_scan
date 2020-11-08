@@ -23,9 +23,19 @@ class PScan:
                 advancment = loop_index / len(ports) * 100
                 print("%.1f" % advancment)
 
+    def show_completion_message(self):
+        print()
+        print("#" * 20)
+        if self.open_ports:
+            print("Open Ports:")
+            print(*self.open_ports, sep=', ')
+        else:
+            print(f"No Open Ports Found on {self.remote_host}")
+
     def run(self):
         self.remote_host = input("Target: ")
         self.threadpool_executer(range(1, 1000))
+        self.show_completion_message()
 
 
 if __name__ == "__main__":
