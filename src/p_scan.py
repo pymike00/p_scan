@@ -34,7 +34,13 @@ class PScan:
         else:
             print(f"No Open Ports Found on {self.remote_host}")
 
+    @staticmethod
+    def show_startup_message():
+        ascii_art = pyfiglet.figlet_format("PSCAN")
+        print(ascii_art) 
+
     def run(self):
+        self.show_startup_message()
         self.remote_host = input("Target: ")
         self.threadpool_executer(range(1, 1000))
         self.show_completion_message()
