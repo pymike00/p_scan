@@ -9,7 +9,6 @@ class PScan:
         self.remote_host = ""
 
     def scan_port(self, port):
-        # print(f"Scanning Port {port}")
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         conn_status = sock.connect_ex((self.remote_host, port))
         if conn_status == 0:
