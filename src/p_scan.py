@@ -2,10 +2,12 @@ from multiprocessing.pool import ThreadPool
 import os
 import socket
 
+import pyfiglet
+
 class PScan:
 
     def __init__(self):
-        self.open_ports = list()
+        self.open_ports = []
         self.remote_host = ""
 
     def scan_port(self, port):
