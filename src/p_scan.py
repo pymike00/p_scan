@@ -36,8 +36,12 @@ class PScan:
 
     @staticmethod
     def show_startup_message():
-        ascii_art = pyfiglet.figlet_format("PSCAN")
-        print(ascii_art) 
+        ascii_art = pyfiglet.figlet_format("P SCAN")
+        print(ascii_art)
+        print("#" * 35)
+        print("A barebone Python TCP Port Scanner")
+        print("#" * 35)
+        print()
 
     def run(self):
         self.show_startup_message()
