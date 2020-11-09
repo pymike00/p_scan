@@ -21,6 +21,7 @@ class PScan:
 
     def threadpool_executer(self, ports):
         number_of_workers = os.cpu_count()
+        print(f"\nRunning Scanner using {number_of_workers} workers.")
         with ThreadPool(number_of_workers) as pool:
             for loop_index, _ in enumerate(pool.imap(self.scan_port, ports), 1):
                 advancment = loop_index / len(ports) * 100
