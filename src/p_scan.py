@@ -4,6 +4,10 @@ import socket
 import sys
 
 import pyfiglet
+from rich.console import Console
+
+console = Console()
+
 
 class PScan:
 
@@ -31,18 +35,18 @@ class PScan:
         print()
         print("#" * 20)
         if self.open_ports:
-            print("Open Ports:")
-            print(*self.open_ports, sep=', ')
+            console.print("Open Ports:", style="bold green")
+            console.print(*self.open_ports, sep=', ')
         else:
-            print(f"No Open Ports Found on {self.remote_host}")
+            console.print(f"No Open Ports Found on Target", style="bold green")
 
     @staticmethod
     def show_startup_message():
         ascii_art = pyfiglet.figlet_format("P SCAN")
-        print(ascii_art)
-        print("#" * 35)
-        print("A bare bone Python TCP Port Scanner")
-        print("#" * 35)
+        console.print(f"[bold green]{ascii_art}[/bold green]")
+        console.print("#" * 35, style="bold green")
+        console.print("A bare bone Python TCP Port Scanner", style="bold green")
+        console.print("#" * 35, style="bold green")
         print()
 
     @staticmethod
@@ -63,7 +67,7 @@ class PScan:
         except KeyboardInterrupt:
             sys.exit("\nRoger that! Closing down.")
         self.remote_host = self.get_host_ip_addr(target)
-        self.threadpool_executer(range(1, 80))
+        self.threadpool_executer(range(1, 81))
         self.show_completion_message()
 
 
