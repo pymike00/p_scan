@@ -45,13 +45,25 @@ class PScan:
         print("#" * 35)
         print()
 
+    @staticmethod
+    def get_host_ip_addr(target):
+        try:
+            ip_addr = socket.gethostbyname(target)
+        except socket.gaierror as e:
+            print()
+            sys.exit(f"{e} - Exiting.")
+        else:
+            print(f"\nReady to run the port scanner on {ip_addr}")
+            return ip_addr
+
     def run(self):
         self.show_startup_message()
         try:
-            self.remote_host = input("Target: ")
+            target = input("Target: ")
         except KeyboardInterrupt:
             sys.exit("\nRoger that! Closing down.")
-        self.threadpool_executer(range(1, 1000))
+        self.remote_host = self.get_host_ip_addr(target)
+        self.threadpool_executer(range(1, 80))
         self.show_completion_message()
 
 
