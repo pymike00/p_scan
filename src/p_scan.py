@@ -10,7 +10,6 @@ console = Console()
 
 
 class PScan:
-
     def __init__(self):
         self.open_ports = []
         self.remote_host = ""
@@ -36,7 +35,7 @@ class PScan:
         print("#" * 20)
         if self.open_ports:
             console.print("Open Ports:", style="bold green")
-            console.print(*self.open_ports, sep=', ')
+            console.print(*self.open_ports, sep=", ")
         else:
             console.print(f"No Open Ports Found on Target", style="bold green")
 
