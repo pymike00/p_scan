@@ -23,7 +23,6 @@ class PScan:
         sock.settimeout(1)
         conn_status = sock.connect_ex((self.remote_host, port))
         if conn_status == 0:
-            console.print(f"\nPort {port} is OPEN\n", style="bold blue")
             self.open_ports.append(port)
         sock.close()
 
