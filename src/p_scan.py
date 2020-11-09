@@ -37,7 +37,7 @@ class PScan:
         print()
         print("#" * 35)
         if self.open_ports:
-            console.print("Open Ports:", style="bold green")
+            console.print("Open Ports:", style="bold green", end=" ")
             console.print(*self.open_ports, sep=", ")
         else:
             console.print(f"No Open Ports Found on Target", style="bold green")
