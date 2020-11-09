@@ -5,7 +5,7 @@ import sys
 
 import pyfiglet
 from rich.console import Console
-from utils import get_ports
+from utils import get_ports_info
 
 console = Console()
 
@@ -73,7 +73,7 @@ class PScan:
 
     def initial_setup(self):
         self.show_startup_message()
-        self.ports_info = get_ports()
+        self.ports_info = get_ports_info()
 
     def run(self):
         try:

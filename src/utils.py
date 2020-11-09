@@ -9,10 +9,10 @@ def extract_json_data(filename):
     return data
 
 
-def get_ports():
+def get_ports_info():
     data = extract_json_data(PORTS_DATA_FILE)
     return {int(k): v for (k, v) in data.items()}
 
 
 if __name__ == "__main__":
-    print(get_ports())
+    print(get_ports_info())
