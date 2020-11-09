@@ -35,12 +35,13 @@ class PScan:
 
     def show_completion_message(self):
         print()
-        print("#" * 35)
+        console.print("#" * 40, style="bold green")
         if self.open_ports:
-            console.print("Open Ports:", style="bold green", end=" ")
+            console.print("Scan Completed. Open Ports:", style="bold green", end=" ")
             console.print(*self.open_ports, sep=", ")
         else:
-            console.print(f"No Open Ports Found on Target", style="bold green")
+            console.print(f"No Open Ports Found on Target", style="bold magenta")
+        console.print("#" * 40, style="bold green")
 
     @staticmethod
     def show_startup_message():
