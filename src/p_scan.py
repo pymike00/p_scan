@@ -1,6 +1,7 @@
 from multiprocessing.pool import ThreadPool
 import os
 import socket
+import sys
 
 import pyfiglet
 
@@ -45,7 +46,10 @@ class PScan:
 
     def run(self):
         self.show_startup_message()
-        self.remote_host = input("Target: ")
+        try:
+            self.remote_host = input("Target: ")
+        except KeyboardInterrupt:
+            sys.exit("\nRoger that! Closing down.")
         self.threadpool_executer(range(1, 1000))
         self.show_completion_message()
 
