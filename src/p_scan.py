@@ -40,7 +40,7 @@ class PScan:
         ascii_art = pyfiglet.figlet_format("P SCAN")
         print(ascii_art)
         print("#" * 35)
-        print("A barebone Python TCP Port Scanner")
+        print("A bare bone Python TCP Port Scanner")
         print("#" * 35)
         print()
 
