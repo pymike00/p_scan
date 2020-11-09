@@ -29,7 +29,7 @@ class PScan:
     def threadpool_executer(self, ports):
         number_of_workers = os.cpu_count()
         console.print(
-            f"Running Scanner using [bold blue]{number_of_workers}[/bold blue] workers."
+            f"\nRunning Scanner using [bold blue]{number_of_workers}[/bold blue] workers."
         )
         with ThreadPool(number_of_workers) as pool:
             for loop_index, _ in enumerate(pool.imap(self.scan_port, ports), 1):
