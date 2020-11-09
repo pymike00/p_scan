@@ -1,5 +1,4 @@
 {    
-    "_comment": "Common Ports.",
     "1": "tcpmux",
     "3": "compressnet",
     "7": "echo",
