@@ -18,13 +18,15 @@ class PScan:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         conn_status = sock.connect_ex((self.remote_host, port))
         if conn_status == 0:
-            print(f"\nPort {port} is OPEN\n")
+            console.print(f"\nPort {port} is OPEN\n", style="bold blue")
             self.open_ports.append(port)
         sock.close()
 
     def threadpool_executer(self, ports):
         number_of_workers = os.cpu_count()
-        print(f"\nRunning Scanner using {number_of_workers} workers.")
+        console.print(
+            f"Running Scanner using [bold blue]{number_of_workers}[/bold blue] workers."
+        )
         with ThreadPool(number_of_workers) as pool:
             for loop_index, _ in enumerate(pool.imap(self.scan_port, ports), 1):
                 advancment = loop_index / len(ports) * 100
@@ -32,7 +34,7 @@ class PScan:
 
     def show_completion_message(self):
         print()
-        print("#" * 20)
+        print("#" * 35)
         if self.open_ports:
             console.print("Open Ports:", style="bold green")
             console.print(*self.open_ports, sep=", ")
@@ -53,10 +55,13 @@ class PScan:
         try:
             ip_addr = socket.gethostbyname(target)
         except socket.gaierror as e:
-            print()
-            sys.exit(f"{e} - Exiting.")
+            console.print(f"{e}. Exiting.", style="bold red")
+            sys.exit()
         else:
-            print(f"\nReady to run the port scanner on {ip_addr}")
+            console.print(
+                f"\nReady to run the port scanner on [bold blue]{ip_addr}[/bold blue]"
+            )
+            input()
             return ip_addr
 
     def run(self):
