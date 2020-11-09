@@ -16,6 +16,7 @@ class PScan:
 
     def scan_port(self, port):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(1)
         conn_status = sock.connect_ex((self.remote_host, port))
         if conn_status == 0:
             console.print(f"\nPort {port} is OPEN\n", style="bold blue")
@@ -61,7 +62,6 @@ class PScan:
             console.print(
                 f"\nReady to run the port scanner on [bold blue]{ip_addr}[/bold blue]"
             )
-            input()
             return ip_addr
 
     def run(self):
