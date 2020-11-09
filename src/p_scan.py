@@ -49,7 +49,7 @@ class PScan:
         print()
         if self.open_ports:
             console.print("Scan Completed. Open Ports:", style="bold blue")
-            table = Table(show_header=True, header_style="bold magenta")
+            table = Table(show_header=True, header_style="bold green")
             table.add_column("PORT")
             table.add_column("STATE", justify="center")
             table.add_column("SERVICE")
