@@ -5,6 +5,8 @@ import sys
 
 import pyfiglet
 from rich.console import Console
+from rich.table import Table
+
 from utils import get_ports_info
 
 console = Console()
@@ -37,13 +39,17 @@ class PScan:
 
     def show_completion_message(self):
         print()
-        console.print("#" * 40, style="bold green")
         if self.open_ports:
-            console.print("Scan Completed. Open Ports:", style="bold green", end=" ")
-            console.print(*self.open_ports, sep=", ")
+            console.print("Scan Completed. Open Ports:", style="bold blue")
+            table = Table(show_header=True, header_style="bold magenta")
+            table.add_column("PORT")
+            table.add_column("STATE", justify="center")
+            table.add_column("SERVICE")
+            for port in self.open_ports:
+                table.add_row(str(port), "OPEN", self.ports_info[port])
+            console.print(table)
         else:
             console.print(f"No Open Ports Found on Target", style="bold magenta")
-        console.print("#" * 40, style="bold green")
 
     @staticmethod
     def show_startup_message():
@@ -61,9 +67,7 @@ class PScan:
         except socket.gaierror as e:
             console.print(f"{e}. Exiting.", style="bold red")
             sys.exit()
-        console.print(
-            f"\nIP address acquired: [bold blue]{ip_addr}[/bold blue]"
-        )
+        console.print(f"\nIP address acquired: [bold blue]{ip_addr}[/bold blue]")
         try:
             input("Press enter to move forward, CTRL + C to exit.")
         except KeyboardInterrupt:
