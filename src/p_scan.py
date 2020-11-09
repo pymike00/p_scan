@@ -28,7 +28,7 @@ class PScan:
 
     @staticmethod
     def display_progress(iteration, total):
-        bar_max_width = 45 # chars
+        bar_max_width = 45  # chars
         bar_current_width = bar_max_width * iteration // total
         bar = "█" * bar_current_width + "-" * (bar_max_width - bar_current_width)
         progress = "%.1f" % (iteration / total * 100)
@@ -64,7 +64,9 @@ class PScan:
         ascii_art = pyfiglet.figlet_format("# PSCAN #")
         console.print(f"[bold green]{ascii_art}[/bold green]")
         console.print("#" * 55, style="bold green")
-        console.print("#" * 9, "A bare bone Python TCP Port Scanner", "#" * 9, style="bold green")
+        console.print(
+            "#" * 9, "A bare bone Python TCP Port Scanner", "#" * 9, style="bold green"
+        )
         console.print("#" * 55, style="bold green")
         print()
 
