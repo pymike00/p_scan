@@ -58,11 +58,15 @@ class PScan:
         except socket.gaierror as e:
             console.print(f"{e}. Exiting.", style="bold red")
             sys.exit()
-        else:
-            console.print(
-                f"\nReady to run the port scanner on [bold blue]{ip_addr}[/bold blue]"
-            )
-            return ip_addr
+        console.print(
+            f"\nIP address acquired: [bold blue]{ip_addr}[/bold blue]"
+        )
+        try:
+            input("Press enter to move forward, CTRL + C to exit.")
+        except KeyboardInterrupt:
+            console.print(f"\nRoger that. Exiting.", style="bold red")
+            sys.exit()
+        return ip_addr
 
     def run(self):
         self.show_startup_message()
