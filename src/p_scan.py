@@ -5,12 +5,14 @@ import sys
 
 import pyfiglet
 from rich.console import Console
+from utils import get_ports
 
 console = Console()
 
 
 class PScan:
     def __init__(self):
+        self.ports_info = {}
         self.open_ports = []
         self.remote_host = ""
 
@@ -69,17 +71,21 @@ class PScan:
             sys.exit()
         return ip_addr
 
-    def run(self):
+    def initial_setup(self):
         self.show_startup_message()
+        self.ports_info = get_ports()
+
+    def run(self):
         try:
             target = input("Target: ")
         except KeyboardInterrupt:
             sys.exit("\nRoger that! Closing down.")
         self.remote_host = self.get_host_ip_addr(target)
-        self.threadpool_executer(range(1, 81))
+        self.threadpool_executer(self.ports_info.keys())
         self.show_completion_message()
 
 
 if __name__ == "__main__":
     scanner = PScan()
+    scanner.initial_setup()
     scanner.run()
