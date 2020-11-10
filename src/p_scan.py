@@ -1,5 +1,4 @@
-from multiprocessing.pool import ThreadPool
-import os
+
 import socket
 import sys
 
@@ -7,7 +6,7 @@ import pyfiglet
 from rich.console import Console
 from rich.table import Table
 
-from utils import get_ports_info
+from utils import get_ports_info, threadpool_executer
 
 console = Console()
 
@@ -25,25 +24,6 @@ class PScan:
         if conn_status == 0:
             self.open_ports.append(port)
         sock.close()
-
-    @staticmethod
-    def display_progress(iteration, total):
-        bar_max_width = 45  # chars
-        bar_current_width = bar_max_width * iteration // total
-        bar = "█" * bar_current_width + "-" * (bar_max_width - bar_current_width)
-        progress = "%.1f" % (iteration / total * 100)
-        console.print(f"|{bar}| {progress} %", end="\r", style="bold green")
-        if iteration == total:
-            print()
-
-    def threadpool_executer(self, function, iterable, iterable_length):
-        number_of_workers = os.cpu_count()
-        console.print(
-            f"\nRunning using [bold blue]{number_of_workers}[/bold blue] workers.\n"
-        )
-        with ThreadPool(number_of_workers) as pool:
-            for loop_index, _ in enumerate(pool.imap(function, iterable), 1):
-                self.display_progress(loop_index, iterable_length)
 
     def show_completion_message(self):
         print()
@@ -95,7 +75,7 @@ class PScan:
         except KeyboardInterrupt:
             sys.exit("\nRoger that! Closing down.")
         self.remote_host = self.get_host_ip_addr(target)
-        self.threadpool_executer(
+        threadpool_executer(
             self.scan_port, self.ports_info.keys(), len(self.ports_info.keys())
         )
         self.show_completion_message()
