@@ -70,12 +70,12 @@ class PScan:
         self.show_startup_message()
         self.get_ports_info()
         try:
-            target = input("Target: ")
+            target = console.input("[bold blue]Target: ")
         except KeyboardInterrupt:
             sys.exit("\nRoger that! Closing down.")
         self.remote_host = self.get_host_ip_addr(target)
         try:
-            input("PScan is ready. Press ENTER to run the scanner.")
+            input("\nPScan is ready. Press ENTER to run the scanner.")
         except KeyboardInterrupt:
             console.print(f"\nRoger that. Exiting.", style="bold red")
             sys.exit()
