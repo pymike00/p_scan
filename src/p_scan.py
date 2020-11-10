@@ -1,4 +1,3 @@
-
 import socket
 import sys
 
@@ -6,16 +5,23 @@ import pyfiglet
 from rich.console import Console
 from rich.table import Table
 
-from utils import get_ports_info, threadpool_executer
+from utils import extract_json_data, threadpool_executer
 
 console = Console()
 
 
 class PScan:
+
+    PORTS_DATA_FILE = "./common_ports.json"
+
     def __init__(self):
         self.ports_info = {}
         self.open_ports = []
         self.remote_host = ""
+
+    def get_ports_info(self):
+        data = extract_json_data(PScan.PORTS_DATA_FILE)
+        self.ports_info = {int(k): v for (k, v) in data.items()}
 
     def scan_port(self, port):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -67,7 +73,7 @@ class PScan:
 
     def initial_setup(self):
         self.show_startup_message()
-        self.ports_info = get_ports_info()
+        self.get_ports_info()
 
     def run(self):
         try:
