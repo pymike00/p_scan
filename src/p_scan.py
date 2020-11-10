@@ -36,14 +36,14 @@ class PScan:
         if iteration == total:
             print()
 
-    def threadpool_executer(self, ports_list, ports_list_length):
+    def threadpool_executer(self, function, iterable, iterable_length):
         number_of_workers = os.cpu_count()
         console.print(
-            f"\nRunning Scanner using [bold blue]{number_of_workers}[/bold blue] workers.\n"
+            f"\nRunning using [bold blue]{number_of_workers}[/bold blue] workers.\n"
         )
         with ThreadPool(number_of_workers) as pool:
-            for loop_index, _ in enumerate(pool.imap(self.scan_port, ports_list), 1):
-                self.display_progress(loop_index, ports_list_length)
+            for loop_index, _ in enumerate(pool.imap(function, iterable), 1):
+                self.display_progress(loop_index, iterable_length)
 
     def show_completion_message(self):
         print()
@@ -95,7 +95,9 @@ class PScan:
         except KeyboardInterrupt:
             sys.exit("\nRoger that! Closing down.")
         self.remote_host = self.get_host_ip_addr(target)
-        self.threadpool_executer(self.ports_info.keys(), len(self.ports_info))
+        self.threadpool_executer(
+            self.scan_port, self.ports_info.keys(), len(self.ports_info.keys())
+        )
         self.show_completion_message()
 
 
