@@ -37,7 +37,7 @@ class PScan:
             console.print("Scan Completed. Open Ports:", style="bold blue")
             table = Table(show_header=True, header_style="bold green")
             table.add_column("PORT", style="blue")
-            table.add_column("STATE", justify="center", style="blue")
+            table.add_column("STATE", style="blue", justify="center")
             table.add_column("SERVICE", style="blue")
             for port in self.open_ports:
                 table.add_row(str(port), "OPEN", self.ports_info[port])
