@@ -72,7 +72,8 @@ class PScan:
         try:
             target = console.input("[bold blue]Target: ")
         except KeyboardInterrupt:
-            sys.exit("\nRoger that! Closing down.")
+            console.print(f"\nRoger that! Exiting.", style="bold red")
+            sys.exit()
         self.remote_host = self.get_host_ip_addr(target)
         try:
             input("\nPScan is ready. Press ENTER to run the scanner.")
