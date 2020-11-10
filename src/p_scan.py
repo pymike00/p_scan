@@ -90,5 +90,5 @@ class PScan:
 
 
 if __name__ == "__main__":
-    scanner = PScan()
-    scanner.initialize()
+    pscan = PScan()
+    pscan.initialize()
