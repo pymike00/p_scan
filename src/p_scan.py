@@ -64,23 +64,25 @@ class PScan:
             console.print(f"{e}. Exiting.", style="bold red")
             sys.exit()
         console.print(f"\nIP address acquired: [bold blue]{ip_addr}[/bold blue]")
-        try:
-            input("Press enter to move forward, CTRL + C to exit.")
-        except KeyboardInterrupt:
-            console.print(f"\nRoger that. Exiting.", style="bold red")
-            sys.exit()
         return ip_addr
 
-    def initial_setup(self):
+    def initialize(self):
         self.show_startup_message()
         self.get_ports_info()
-
-    def run(self):
         try:
             target = input("Target: ")
         except KeyboardInterrupt:
             sys.exit("\nRoger that! Closing down.")
         self.remote_host = self.get_host_ip_addr(target)
+        try:
+            input("PScan is ready. Press ENTER to run the scanner.")
+        except KeyboardInterrupt:
+            console.print(f"\nRoger that. Exiting.", style="bold red")
+            sys.exit()
+        else:
+            self.run()
+
+    def run(self):
         threadpool_executer(
             self.scan_port, self.ports_info.keys(), len(self.ports_info.keys())
         )
@@ -89,5 +91,4 @@ class PScan:
 
 if __name__ == "__main__":
     scanner = PScan()
-    scanner.initial_setup()
-    scanner.run()
+    scanner.initialize()
