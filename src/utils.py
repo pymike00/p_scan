@@ -25,9 +25,7 @@ def extract_json_data(filename):
 
 def threadpool_executer(function, iterable, iterable_length):
     number_of_workers = os.cpu_count()
-    console.print(
-        f"\nRunning using [bold blue]{number_of_workers}[/bold blue] workers.\n"
-    )
+    print(f"\nRunning using {number_of_workers} workers.\n")
     with ThreadPool(number_of_workers) as pool:
         for loop_index, _ in enumerate(pool.imap(function, iterable), 1):
             display_progress(loop_index, iterable_length)
