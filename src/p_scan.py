@@ -51,7 +51,7 @@ class PScan:
         console.print(f"[bold green]{ascii_art}[/bold green]")
         console.print("#" * 55, style="bold green")
         console.print(
-            "#" * 9, "A bare bone Python TCP Port Scanner", "#" * 9, style="bold green"
+            "#" * 9, "Simple MultiThread TCP Port Scanner", "#" * 9, style="bold green"
         )
         console.print("#" * 55, style="bold green")
         print()
