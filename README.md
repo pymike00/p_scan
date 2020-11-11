@@ -1,9 +1,10 @@
 # p_scan - simple multithread tcp port scanner
 Simple TCP Port Scanner. *Written with the sole purpose of having fun while making a YouTube video*.
 
-<p align="center">
-  <img alt="pscan" src="pscan.png"/>
-</p>
+SpeedCoding YouTube Video: https://youtu.be/4i5k1wSM1dM
+
+<br>
+<img alt="pscan" src="pscan.png"/>
 
 ## Install
 
