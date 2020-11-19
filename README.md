@@ -2,9 +2,9 @@
 Simple TCP Port Scanner. *Written with the sole purpose of having fun while making a YouTube video*.
 
 SpeedCoding YouTube Video: https://youtu.be/4i5k1wSM1dM
-
 <br>
-<img alt="pscan" src="pscan.png"/>
+
+![](https://i.imgur.com/nC72ype.gif)
 
 ## Install
 
